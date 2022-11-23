@@ -15,7 +15,6 @@ def get_current_time():
 
 @app.route("/create-presigned-post")
 def create_presigned_post():
-
     fields=None
     conditions=None
     expiration=3600

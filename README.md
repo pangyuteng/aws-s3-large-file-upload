@@ -36,11 +36,14 @@ docker tag lambda-docker-flask:latest 535328050074.dkr.ecr.us-east-1.amazonaws.c
 docker push 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 
 
-#zappa init
-#zappa deploy prod
-#zappa update prod
+zappa deploy lambda_docker_flask -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 
 zappa update lambda_docker_flask -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
+
+
+zappa save-python-settings-file prod
+zappa deploy prod -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
+
 
 
 
