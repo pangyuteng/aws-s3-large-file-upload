@@ -1,5 +1,7 @@
 import os
 import sys
+import logging
+import traceback
 import json
 import time
 from flask import Flask, jsonify, request
@@ -37,7 +39,7 @@ def file_upload():
     conditions=None
     try:
         # The response contains the presigned URL and required fields
-        client = boto3.client("s3",
+        s3_client = boto3.client("s3",
             config=Config(signature_version="s3v4")
         )
         url = s3_client.generate_presigned_post(
@@ -45,10 +47,11 @@ def file_upload():
             object_name,
             Fields=fields,
             Conditions=conditions,
-            ExpiresIn=expiration,
+            ExpiresIn=expiry_time,
         )
         return url
-    except ClientError as e:
-        logging.error(e)
+    except:
+        traceback.print_exc()
+        logging.error(traceback.format_exc())
         return None
     

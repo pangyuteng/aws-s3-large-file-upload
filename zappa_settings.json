@@ -1,7 +1,7 @@
 {
-    "lambda_docker_flask": {
+    "prod": {
         "app_function": "app.app",
-        "project_name": "test",
+        "project_name": "lambda-docker-flask",
         "s3_bucket": "lambda-docker-flask-2405fd329144",
         "environment_variables": {
             "EXAMPLE_ENV_VAR": "prod"
