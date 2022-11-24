@@ -1,18 +1,1 @@
-{
-    "prod": {
-        "app_function": "app.app",
-        "project_name": "lambda-docker-flask",
-        "cors": true,
-        "s3_bucket": "lambda-docker-flask-2405fd329144",
-        "environment_variables": {
-            "EXAMPLE_ENV_VAR": "prod"
-        },
-        "events": [
-            {
-               "function": "process.run_process",
-               "expression": "cron(0 */2 * * ? *)"
-            }
-        ],
-        "lambda_description": "Zappa + Docker + Flask"
-    }
-}
+{ "prod": { "app_function": "app.app", "project_name": "lambda-docker-flask", "s3_bucket": "lambda-docker-flask-7026c5a3d42f518e", "environment_variables": { "EXAMPLE_ENV_VAR": "prod" }, "events": [ { "function": "process.run_process", "expression": "cron(0 */2 app.py build_and_push.sh deploy.sh Dockerfile process.py README.md requirements.txt static templates undeploy.sh update.sh zappa_settings.json zappa_settings.py app.py build_and_push.sh deploy.sh Dockerfile process.py README.md requirements.txt static templates undeploy.sh update.sh zappa_settings.json zappa_settings.py *)" } ], "lambda_description": "Zappa + Docker + Flask" } }

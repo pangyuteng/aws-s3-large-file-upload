@@ -13,7 +13,7 @@ upload csv below:<br>
   <input type="submit" name="submit" value="Upload" />
 </form>
 <br>
-<a href="{{ url_for('completed',uid) }}">click-this-upload-to-view-file</a>
+<a href={{ url_for("completed",uid=uid) }}>click-this-upload-to-view-file</a>
 <br><br>
 <!--
 curl -v {% for key, value in url_dict.fields.items() %} -F {{key}}={{value}}{% endfor %} -F file=@myfile {{url_dict.url}}

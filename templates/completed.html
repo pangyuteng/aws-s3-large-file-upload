@@ -9,11 +9,8 @@
 <body>
 uid: {{uid}}
 <hr>
-{% for df in df_list %}
 {% for n,row in df.iterrows() %}
 {{row}}<br>
-{% endfor %}
-<hr>
 {% endfor %}
 <br>
 delete_success: {{delete_success}}

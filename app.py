@@ -4,18 +4,18 @@ import traceback
 import json
 import time
 import uuid
+import pandas as pd
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_cors import CORS
 
 import boto3
 from botocore.client import Config
 
-# THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-# settings_json_file = os.path.join(THIS_DIR,"zappa_setting.json")
-# with open(settings_json_file,"r") as f:
-#     content = json.loads(f.read())
-# BUCKET_NAME = content["lambda_docker_flask"]["s3_bucket"]
-BUCKET_NAME = "lambda-docker-flask-2405fd329144"
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+settings_json_file = os.path.join(THIS_DIR,"zappa_settings.json")
+with open(settings_json_file,"r") as f:
+    content = json.loads(f.read())
+BUCKET_NAME = content["lambda_docker_flask"]["s3_bucket"]
 
 app = Flask(__name__)
 CORS(app)
@@ -55,7 +55,7 @@ def upload():
     except:
         error_dict = {"message":"unexpected error. traceback:"+traceback.format_exc()}
         return jsonify(error_dict)
-        
+
 @app.route('/completed')
 def completed():
     
