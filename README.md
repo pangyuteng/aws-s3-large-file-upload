@@ -5,18 +5,20 @@
 # first time deploy
 bash build_and_push.sh && bash deploy.sh
 
-# later
+# update and deploy
 bash build_and_push.sh && bash update.sh
 
 ```
 
-### notes
+### references
 ```
 
 https://ianwhitestone.work/zappa-serverless-docker
 https://medium.com/@support_58351/generate-pre-signed-url-using-python-for-file-upload-in-aws-s3-e661653a304a
+```
 
-
+### notes
+```
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"path": "/", "httpMethod": "GET", "requestContext": {}, "body": null}'
 
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"path": "/time", "httpMethod": "GET", "requestContext": {}, "body": null}'
