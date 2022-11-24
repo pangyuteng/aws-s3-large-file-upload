@@ -47,11 +47,15 @@ def get_s3_post_url(object_name):
 
 @app.route("/upload")
 def upload():
-    # render upload page
-    uid = uuid.uuid4().hex
-    url_dict = get_s3_post_url(uid)
-    return render_template('upload.html',uid=uid,url_dict=url_dict)
-
+    try:
+        # render upload page
+        uid = uuid.uuid4().hex
+        url_dict = get_s3_post_url(uid)
+        return render_template('upload.html',uid=uid,url_dict=url_dict)
+    except:
+        error_dict = {"message":"unexpected error. traceback:"+traceback.format_exc()}
+        return jsonify(error_dict)
+        
 @app.route('/completed')
 def completed():
     
