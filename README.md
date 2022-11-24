@@ -1,12 +1,20 @@
 # aws-s3-large-file-upload
 
+
+### prior deploy
+
+install: aws-cli, jq, zappa via pip
 ### deploy steps
 ```
 # first time deploy
+aws ecr create-repository --repository-name lambda-docker-flask
 bash build_and_push.sh && bash deploy.sh
 
 # update and deploy
 bash build_and_push.sh && bash update.sh
+
+# undeploy
+bash undeploy.sh
 
 ```
 
