@@ -1,10 +1,11 @@
 import os
 import sys
-import logging
 import traceback
 import json
 import time
-from flask import Flask, jsonify, request
+import uuid
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+
 import boto3
 from botocore.client import Config
 
@@ -25,14 +26,27 @@ def serve():
 def get_current_time():
     return {"time": round(time.time())}
 
+@app.route("/upload")
+def upload():
+    # render upload page
+    uid = uuid.uuid4().hex
+    return render_template('upload.html',uid=uid)
+
+@app.route('/completed')
+def completed():
+    uid = request.args.get('uid')
+    return render_template('completed.html',uid=uid)
+
 """
 object_name: name of the file.
 expiry_time: denotes the expiry time of the URL.
 """
 @app.route("/file-upload",methods=["GET"])
 def file_upload():
-
-    object_name = request.args.get('object_name')
+    try:
+        object_name = request.args.get('object_name')
+    except:
+        return jsonify({"message":"error: param `object_name` not specified!"})
     expiry_time = request.args.get('expiry_time',3600)
 
     fields=None
@@ -52,6 +66,6 @@ def file_upload():
         return url
     except:
         traceback.print_exc()
-        logging.error(traceback.format_exc())
-        return None
+        error_dict = {"message":"unexpected error. traceback:"+traceback.format_exc()}
+        return jsonify(error_dict)
     

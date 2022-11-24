@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='basic.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='dropzone.css') }}"> 
+  <script src="{{ url_for('static', filename='dropzone-amd-module.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+</head>
+
+<body>
+uid: {{uid}}
+<form action="{{ url_for('upload',uid=uid) }}" class="dropzone" id="my-dropzone" method="POST" enctype="multipart/form-data">
+</form>
+
+<script>
+  Dropzone.autoDiscover = false;
+  
+  $(function() {
+    var myDropzone = new Dropzone("#my-dropzone");
+    myDropzone.on("queuecomplete", function(file) {
+      // Called when all files in the queue finish uploading.
+      window.location = "{{ url_for('completed',uid=uid) }}";
+    });
+  })
+</script>
+</body>
+
+</html>
+
+

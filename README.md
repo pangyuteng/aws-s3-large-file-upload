@@ -3,9 +3,8 @@
 ```
 
 https://ianwhitestone.work/zappa-serverless-docker
-# per above, manually create `zappa_settings.json`, zdf/*.py and docker file 
+https://medium.com/@support_58351/generate-pre-signed-url-using-python-for-file-upload-in-aws-s3-e661653a304a
 
-docker run -p 9000:8080 lambda-docker-flask:latest
 
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"path": "/", "httpMethod": "GET", "requestContext": {}, "body": null}'
 
@@ -17,6 +16,8 @@ aws ecr get-login-password | docker login --username AWS --password-stdin 535328
 
 
 docker build -t lambda-docker-flask:latest .
+docker run -p 9000:8080 lambda-docker-flask:latest
+
 
 aws ecr describe-repositories --repository-names lambda-docker-flask
 
@@ -36,14 +37,20 @@ zappa deploy prod -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-
 zappa update prod -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 
 
-https://medium.com/@support_58351/generate-pre-signed-url-using-python-for-file-upload-in-aws-s3-e661653a304a
+curl https://g7jydjfbg4.execute-api.us-east-1.amazonaws.com/prod/file-upload?object_name=hello.tar.gz
 
+# post
+https://gist.github.com/alexdebrie/3e8b96217f5aff01227050b17a24e380
 
-curl -X GET https://reqbin.com/echo/post/json
-   -H 'Content-Type: application/json'
-   -d '{"login":"my_login","password":"my_password"}'
-
-curl --request POST --data-binary "@template_entry.xml" $URL
+curl -v -F key=hello.tar.gz \
+  -F x-amz-algorithm=*** \
+  -F policy=*** \
+  -F x-amz-credential=*** \
+  -F x-amz-date=*** \
+  -F x-amz-security-token=*** \
+  -F x-amz-signature=*** \
+  -F file=@hello.tar.gz \
+  https://lambda-docker-flask-2405fd329144.s3.amazonaws.com/
 
 
 GET /my-large-file-app/home
