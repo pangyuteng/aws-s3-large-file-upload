@@ -6,11 +6,12 @@ from flask import Flask, jsonify, request
 import boto3
 from botocore.client import Config
 
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-settings_json_file = os.path.join(THIS_DIR,"zappa_setting.json")
-with open(settings_json_file,"r") as f:
-    content = json.loads(f.read())
-    BUCKET_NAME = content["lambda_docker_flask"]["s3_bucket"]
+# THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+# settings_json_file = os.path.join(THIS_DIR,"zappa_setting.json")
+# with open(settings_json_file,"r") as f:
+#     content = json.loads(f.read())
+# BUCKET_NAME = content["lambda_docker_flask"]["s3_bucket"]
+BUCKET_NAME = "lambda-docker-flask-2405fd329144"
 
 app = Flask(__name__)
 
