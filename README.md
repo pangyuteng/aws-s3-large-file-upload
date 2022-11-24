@@ -34,8 +34,6 @@ zappa save-python-settings-file lambda_docker_flask
 docker build -t lambda-docker-flask:latest .
 docker tag lambda-docker-flask:latest 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 docker push 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
-
-
 zappa deploy lambda_docker_flask -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 
 zappa update lambda_docker_flask -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
@@ -45,9 +43,14 @@ zappa save-python-settings-file prod
 zappa deploy prod -d 535328050074.dkr.ecr.us-east-1.amazonaws.com/lambda-docker-flask:latest
 
 
-
-
 https://medium.com/@support_58351/generate-pre-signed-url-using-python-for-file-upload-in-aws-s3-e661653a304a
+
+
+curl -X GET https://reqbin.com/echo/post/json
+   -H 'Content-Type: application/json'
+   -d '{"login":"my_login","password":"my_password"}'
+
+curl --request POST --data-binary "@template_entry.xml" $URL
 
 
 GET /my-large-file-app/home

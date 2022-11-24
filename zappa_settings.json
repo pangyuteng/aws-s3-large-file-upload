@@ -1,6 +1,6 @@
 {
     "lambda_docker_flask": {
-        "app_function": "zdf.app.app",
+        "app_function": "app.app",
         "project_name": "test",
         "s3_bucket": "lambda-docker-flask-2405fd329144",
         "environment_variables": {
@@ -8,7 +8,7 @@
         },
         "events": [
             {
-               "function": "zdf.process.run_process",
+               "function": "process.run_process",
                "expression": "cron(0 */2 * * ? *)"
             }
         ],
