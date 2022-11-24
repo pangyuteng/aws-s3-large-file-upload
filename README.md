@@ -1,5 +1,16 @@
 # aws-s3-large-file-upload
 
+### deploy steps
+```
+# first time deploy
+bash build_and_push.sh && bash deploy.sh
+
+# later
+bash build_and_push.sh && bash update.sh
+
+```
+
+### notes
 ```
 
 https://ianwhitestone.work/zappa-serverless-docker
