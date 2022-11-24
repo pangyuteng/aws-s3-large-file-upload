@@ -15,7 +15,7 @@ THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 settings_json_file = os.path.join(THIS_DIR,"zappa_settings.json")
 with open(settings_json_file,"r") as f:
     content = json.loads(f.read())
-BUCKET_NAME = content["lambda_docker_flask"]["s3_bucket"]
+BUCKET_NAME = content["prod"]["s3_bucket"]
 
 app = Flask(__name__)
 CORS(app)
