@@ -1,3 +1,4 @@
 zappa_settings.py
 zappa_settings.json
 .bucket-name
+lambda-docker-flask-prod-template-*.json

@@ -19,7 +19,7 @@ text='
         "events": [
             {
                "function": "process.run_process",
-               "expression": "cron(0 */2 * * *)"
+               "expression": "cron(0 */2 * * ? *)"
             }
         ],
         "lambda_description": "Zappa + Docker + Flask"
